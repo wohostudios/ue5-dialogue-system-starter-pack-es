@@ -26,6 +26,17 @@ AC_Dialogue · Switch on E_DialogueType
 
 **Importante:** El mensaje se envía a **todos los actores encontrados que implementen la interfaz**, no a uno elegido específicamente por el nombre del evento. Cada receptor debe filtrar los nombres que le corresponden. Si muchos actores implementan la interfaz, todos podrán recibir el mensaje y reaccionar según su lógica.
 
+### Envío de eventos desde AC_Dialogue
+
+El componente `AC_Dialogue` utiliza `Get All Actors with Interface`
+para localizar los actores que implementan `BPI_DialogueEvents`.
+
+Después recorre los actores encontrados mediante `For Each Loop`
+y ejecuta `Execute Dialogue Event`, enviando el identificador
+almacenado en `Dialogue Current Event`.
+
+![Envío de eventos desde AC_Dialogue](../images/switch.png)
+
 ## Paso 1. Configura el evento en la Data Table
 
 1. Abre tu Data Table con estructura `ST_DialogueLine`.
@@ -68,6 +79,19 @@ El ejemplo del proyecto utiliza una referencia a `PointLightFacility`, su `Point
 
 El ejemplo demuestra cómo un evento de una conversación controla un elemento del nivel. Si reproduces esta configuración en otro mapa, comprueba que el receptor concreto está siendo descubierto por `Get All Actors with Interface`.
 
+### Ejemplo: controlar luces mediante eventos
+
+En este ejemplo, el Level Blueprint recibe
+`Event ExecuteDialogueEvent`.
+
+El nodo `Switch on Name` identifica el evento recibido:
+
+- `PowerActivate`: ejecuta una Timeline para encender la luz.
+- `PowerOff`: establece la intensidad de la luz en cero.
+
+![Eventos en Level Blueprint](../images/eventos-level-blueprint1.png)
+![Eventos en Level Blueprint](../images/eventos-level-blueprint2.png)
+
 ## Ejemplo B. Activar o desactivar una variable del jugador
 
 En `BP_FirstPersonCharacter`, con `BPI_DialogueEvents` agregada a **Implemented Interfaces**, el ejemplo mostrado usa `Event ExecuteDialogueEvent` y `Switch on Name`:
@@ -76,6 +100,20 @@ En `BP_FirstPersonCharacter`, con `BPI_DialogueEvents` agregada a **Implemented 
 - Caso **`OpenDoor`**: `Set MovePlayer = false`.
 
 Estos son **ejemplos de nombres y efectos del proyecto de demostración**: utiliza identificadores que coincidan con tus propias filas de Data Table. El caso `OpenDoor` de esta captura cambia una variable booleana; **no abre una puerta por sí mismo**.
+
+### Ejemplo: recibir eventos en el jugador
+
+También podemos implementar `BPI_DialogueEvents`
+directamente en el Blueprint del personaje.
+
+En `BP_FirstPersonCharacter`, el evento
+`ExecuteDialogueEvent` utiliza `Switch on Name`
+para modificar la variable `MovePlayer`.
+
+- `ActiveTrigger`: activa `MovePlayer`.
+- `OpenDoor`: desactiva `MovePlayer`.
+
+![Eventos en el personaje](../images/eventos-player-character.png)
 
 ## Diagnóstico si no llega el evento
 
@@ -86,10 +124,4 @@ Estos son **ejemplos de nombres y efectos del proyecto de demostración**: utili
 5. Si el evento se recibe pero no hay efecto, revisa la lógica después del Switch y las referencias a los componentes.
 6. Si varios actores reaccionan inesperadamente, recuerda que el mensaje llega a todos los encontrados con esa interfaz: filtra por nombre dentro de cada actor.
 
-## Capturas recomendadas
 
-Al completar la documentación visual, agrega imágenes auténticas del proyecto para mostrar:
-
-- `AC_Dialogue`: `Get All Actors with Interface` → `For Each Loop` → `Execute Dialogue Event`.
-- `BP_FirstPersonCharacter`: `Implemented Interfaces` y `Switch on Name` para `ActiveTrigger` / `OpenDoor`.
-- Level Blueprint: ejemplo de `TL_LightFade` y `Set Intensity`.

@@ -44,6 +44,11 @@ No son el mismo valor. Para un diálogo secuencial, utiliza valores `Order` cohe
 
 > **Compatibilidad no significa disponibilidad:** `ST_DialogueLine` contiene propiedades que Free no procesa. No elimines las columnas ni cambies sus tipos: se mantienen para reutilizar las conversaciones en Full. La presencia de `Text_ES`, `Audio_EN` o `Audio_ES` no garantiza localización o voces activas en Free.
 
+La estructura `ST_DialogueLine` contiene las propiedades
+utilizadas para configurar cada línea de conversación.
+
+![Estructura ST_DialogueLine](../images/st-dialogue-line.png)
+
 ## Ejemplo de conversación básica
 
 | Row Name | Order | Type | Speaker | Text_EN | Duration | DelayAfter |
@@ -53,6 +58,11 @@ No son el mismo valor. Para un diálogo secuencial, utiliza valores `Order` cohe
 | `003` | 2 | Normal | Guide | Find the generator. | 3.0 | 0.5 |
 
 Este ejemplo asume el flujo secuencial normal y el texto en inglés. Ajusta las duraciones para facilitar la lectura.
+
+Cada fila de la Data Table representa una línea
+de diálogo o una instrucción dentro de la conversación.
+
+![Configuración de una Data Table](../images/tabla-conversacion.png)
 
 ## Duración y pausas
 
@@ -69,7 +79,4 @@ En `TriggerEvent`, escribe un identificador como `PowerActivate`. Ese nombre se 
 
 En el Blueprint del jugador, después de llamar a `Dialogue Create Widget`, usa `Dialogue Play Conversation` con `AC_Dialogue` como `Target` y selecciona la nueva Data Table en `Conversation`.
 
-## Imágenes pendientes
 
-- `images/st-dialogue-line.png` — Campos de la estructura `ST_DialogueLine`.
-- `images/tabla-conversacion.png` — Data Table de ejemplo y panel Row Editor.

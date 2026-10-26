@@ -83,8 +83,3 @@ Cuando necesites **decisiones interactivas, Rich Text, diferentes interfaces de 
 - [Comunidad en Discord (español)](https://discord.gg/JY5JTQaWqn)
 - [Producto gratuito en Fab](https://www.fab.com/listings/1d39c10d-b6b0-4dd1-b704-8b3d60658e23)
 
-## Estado de la guía
-
-**Versión de revisión en español.** Los pasos principales están documentados con los nombres observados en el proyecto. El recorrido de `ExecuteDialogueEvent` en `AC_Dialogue` está documentado a partir de las capturas del Blueprint: el componente busca actores con `BPI_DialogueEvents` y envía el mensaje a cada uno. Consulta la [guía de eventos](docs/03-eventos.md).
-
-También añadiremos capturas originales del sistema a `images/` y publicaremos la traducción al inglés cuando esta versión haya sido revisada.

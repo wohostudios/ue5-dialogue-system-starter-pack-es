@@ -58,6 +58,10 @@ Dialogue Play Conversation ◀── AC_Dialogue (Target)
 
 **Resultado esperado:** la conversación comienza al iniciarse el nivel. Si todavía no tienes una Data Table, continúa con la [guía de conversaciones](02-conversaciones.md).
 
+### Ejemplo: Actor Component agregado al jugador
+
+![Instalación del componente AC_Dialogue](../images/instalacion-actor-component.png)
+
 ## Iniciar diálogos por interacción
 
 `BeginPlay` se utiliza solo para la demostración inicial. Para iniciar el diálogo al interactuar con un NPC, llama a `Dialogue Play Conversation` desde el evento de interacción de tu proyecto, después de que la interfaz haya sido creada.
@@ -68,6 +72,4 @@ Dialogue Play Conversation ◀── AC_Dialogue (Target)
 
 La arquitectura basada en Actor Component no obliga a reemplazar el `GameInstance`, el `GameMode` o el `PlayerController`. Puedes agregar el componente al actor adecuado en First Person, Third Person u otras plantillas. Debes adaptar la forma de activar la conversación a la lógica del proyecto.
 
-## Imagen pendiente
 
-`images/instalacion-actor-component.png` — Captura del Blueprint del jugador con `AC_Dialogue`, `Dialogue Create Widget` y `Dialogue Play Conversation` conectados.
